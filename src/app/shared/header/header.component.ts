@@ -1,39 +1,31 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {OidcSecurityService} from "angular-auth-oidc-client";
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  private oidcSecurityService = inject(OidcSecurityService);
 
-  private readonly oidcSecurityService = inject(OidcSecurityService);
-  isAuthenticated = false;
-  username = "";
+  isAuthenticated$ = this.oidcSecurityService.isAuthenticated$.pipe(
+    map(({ isAuthenticated }) => isAuthenticated)
+  );
 
-  ngOnInit(): void {
-    this.oidcSecurityService.isAuthenticated$.subscribe(
-      ({isAuthenticated}) => {
-        this.isAuthenticated = isAuthenticated;
-      }
-    )
-    this.oidcSecurityService.userData$.subscribe(
-      ({userData}) => {
-        this.username = userData.preferred_username
-      }
-    )
-  }
+  username$ = this.oidcSecurityService.userData$.pipe(
+    map(({ userData }) => userData?.preferred_username ?? '')
+  );
 
   login(): void {
     this.oidcSecurityService.authorize();
   }
 
   logout(): void {
-    this.oidcSecurityService
-      .logoff()
-      .subscribe((result) => console.log(result));
+    this.oidcSecurityService.logoff().subscribe();
   }
 }

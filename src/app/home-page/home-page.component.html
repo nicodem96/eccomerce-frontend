@@ -1,50 +1,77 @@
-<main>
-    <div class="p-4">
-      <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold mb-4">Products ({{ products.length }})</h1>
-        @if (isAuthenticated) {
-          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 ml-4"
-                  (click)="goToCreateProductPage()">
-            Create Product
-          </button>
-        }
-      </div>
-      @if (products.length > 0) {
-        @if (orderSuccess) {
-          <h4 class="text-green-500 font-bold">Order Placed Successfully</h4>
-        } @else if (orderFailed) {
-          <h4 class="text-red-500 font-bold">Order Failed, please try again later</h4>
-          @if(quantityIsNull) {
-            <h4 class="text-red-500 font-bold">Quantity cannot be null</h4>
-          }
-        }
-        <ul class="list-disc list-inside">
-          @for (product of products; track product.id) {
-            <li class="mb-2 p-4 bg-gray-100 rounded-lg shadow-sm flex justify-between items-center">
-              <div>
-                <span class="font-semibold">{{ product.name }}</span> -
-                <span class="text-gray-600">
-                  Price: {{ product.price }}
-                </span>
-                <br/>
-                <span >
-                  Quantity: <input type="number" #quantityInput/>
-                </span>
-                <br/>
-              </div>
-              <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 ml-4"
-                      (click)="orderProduct(product, quantityInput.value)">
-                Order Now
-              </button>
-            </li>
-          }
-        </ul>
-      } @else if (products.length === 100) {
-        <span class="text-sm text-gray-700">
-        Click <a class="text-blue-500 hover:underline cursor-pointer">Load More</a> to see more products
-      </span>
-      } @else {
-        <p class="text-red-500 font-semibold">No products found!</p>
+<main class="container mx-auto px-4">
+  @if (loading$ | async) {
+    <div class="flex justify-center items-center h-32">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+      <span class="block sm:inline">{{errorMessage}}</span>
+    </div>
+  }
+
+  <div class="p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold mb-4">Products ({{ products.length }})</h1>
+      @if (isAuthenticated) {
+        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 ml-4"
+                (click)="goToCreateProductPage()">
+          Create Product
+        </button>
       }
     </div>
-  </main>
+    @if (products.length > 0) {
+      @if (orderSuccess) {
+        <h4 class="text-green-500 font-bold">Order Placed Successfully</h4>
+      } @else if (orderFailed) {
+        <h4 class="text-red-500 font-bold">Order Failed, please try again later</h4>
+        @if(quantityIsNull) {
+          <h4 class="text-red-500 font-bold">Quantity cannot be null</h4>
+        }
+      }
+      <ul class="list-disc list-inside">
+        @for (product of products; track product.id) {
+          <div class="border p-4 rounded-lg mb-4">
+            <h3 class="text-xl font-bold">{{product.name}}</h3>
+            <p class="text-gray-600">{{product.description}}</p>
+            <p class="text-lg font-semibold">${{product.price}}</p>
+            @if (product.categoryName) {
+              <p class="text-sm text-gray-500">Category: {{product.categoryName}}</p>
+            }
+            @if (isAuthenticated) {
+              <div class="mt-4 flex gap-4">
+                <select [(ngModel)]="selectedPaymentMethod"
+                        class="rounded border p-2">
+                  <option [value]="PaymentMethod.CREDIT_CARD">Credit Card</option>
+                  <option [value]="PaymentMethod.PAYPAL">PayPal</option>
+                  <option [value]="PaymentMethod.VISA">Visa</option>
+                  <option [value]="PaymentMethod.MASTER_CARD">Master Card</option>
+                  <option [value]="PaymentMethod.BITCOIN">Bitcoin</option>
+                </select>
+
+                <input type="number"
+                       #quantityInput
+                       class="rounded border p-2"
+                       placeholder="Quantity"
+                       min="1"/>
+
+                <button (click)="orderProduct(product, quantityInput.value)"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                        [disabled]="loading$ | async">
+                  {{ (loading$ | async) ? 'Processing...' : 'Order Now' }}
+                </button>
+              </div>
+            }
+          </div>
+        }
+      </ul>
+    } @else if (products.length === 100) {
+      <span class="text-sm text-gray-700">
+      Click <a class="text-blue-500 hover:underline cursor-pointer">Load More</a> to see more products
+    </span>
+    } @else {
+      <p class="text-red-500 font-semibold">No products found!</p>
+    }
+  </div>
+</main>
