@@ -1,0 +1,44 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  height: 3rem;
+  width: 3rem;
+  border-bottom: 2px solid rgb(17 24 39);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.confirmation-container {
+  max-width: 42rem;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.confirmation-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.order-details {
+  border-top: 1px solid rgb(229 231 235);
+  padding-top: 1rem;
+}
+
+.order-info {
+  color: rgb(55 65 81);
+  margin-bottom: 0.5rem;
+}

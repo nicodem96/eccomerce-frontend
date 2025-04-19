@@ -1,14 +1,14 @@
 @if (loading$ | async) {
-    <div class="flex justify-center items-center">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
     </div>
   } @else if (order) {
-    <div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-      <h2 class="text-2xl font-bold mb-4">Order Confirmation</h2>
-      <div class="border-t border-gray-200 pt-4">
-        <p class="text-gray-700">Order Number: {{order.reference}}</p>
-        <p class="text-gray-700">Total Amount: ${{order.amount}}</p>
-        <p class="text-gray-700">Payment Method: {{order.paymentMethod}}</p>
+    <div class="confirmation-container">
+      <h2 class="confirmation-title">Order Confirmation</h2>
+      <div class="order-details">
+        <p class="order-info">Order Number: {{order.reference}}</p>
+        <p class="order-info">Total Amount: ${{order.amount}}</p>
+        <p class="order-info">Payment Method: {{order.paymentMethod}}</p>
       </div>
     </div>
   }

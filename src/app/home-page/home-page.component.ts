@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
 import {ProductService} from "../services/product/product.service";
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe, CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {OrderService} from "../services/order/order.service";
@@ -19,9 +19,10 @@ import { ProductResponse } from '../model/product/product-response';
   standalone: true,
   imports: [
     AsyncPipe,
-    FormsModule
+    FormsModule,
+    CommonModule,
   ],
-  styleUrl: './home-page.component.css'
+  styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
   private readonly oidcSecurityService = inject(OidcSecurityService);

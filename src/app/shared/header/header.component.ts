@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
   standalone: true,
   imports: [RouterLink, AsyncPipe],
   templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
   private oidcSecurityService = inject(OidcSecurityService);
@@ -20,10 +21,6 @@ export class HeaderComponent {
   username$ = this.oidcSecurityService.userData$.pipe(
     map(({ userData }) => userData?.preferred_username ?? '')
   );
-
-  login(): void {
-    this.oidcSecurityService.authorize();
-  }
 
   logout(): void {
     this.oidcSecurityService.logoff().subscribe();

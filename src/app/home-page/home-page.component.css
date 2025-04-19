@@ -1,0 +1,153 @@
+.main-container {
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  height: 3rem;
+  width: 3rem;
+  border-bottom: 2px solid rgb(17 24 39);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  background-color: rgb(254 226 226);
+  border: 1px solid rgb(248 113 113);
+  color: rgb(185 28 28);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.page-content {
+  padding: 1rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.create-product-btn {
+  background-color: rgb(34 197 94);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+}
+
+.create-product-btn:hover {
+  background-color: rgb(22 163 74);
+}
+
+.success-message {
+  color: rgb(34 197 94);
+  font-weight: 700;
+}
+
+.failure-message {
+  color: rgb(239 68 68);
+  font-weight: 700;
+}
+
+.product-card {
+  border: 1px solid rgb(229 231 235);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.product-description {
+  color: rgb(75 85 99);
+}
+
+.product-price {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.product-category {
+  font-size: 0.875rem;
+  color: rgb(107 114 128);
+}
+
+.product-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.product-select {
+  border: 1px solid rgb(229 231 235);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+}
+
+.quantity-input {
+  border: 1px solid rgb(229 231 235);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+}
+
+.order-button {
+  background-color: rgb(59 130 246);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+}
+
+.order-button:hover {
+  background-color: rgb(37 99 235);
+}
+
+.order-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.load-more {
+  font-size: 0.875rem;
+  color: rgb(55 65 81);
+}
+
+.load-more-link {
+  color: rgb(59 130 246);
+}
+
+.load-more-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.no-products {
+  color: rgb(239 68 68);
+  font-weight: 600;
+}

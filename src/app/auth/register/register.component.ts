@@ -9,13 +9,13 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private oidcSecurityService: OidcSecurityService
   ) {
     this.registerForm = this.fb.group({

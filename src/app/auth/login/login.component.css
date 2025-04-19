@@ -1,0 +1,79 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(249 250 251);
+    padding: 3rem 1rem;
+}
+
+.login-form-container {
+    max-width: 28rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.login-header {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 800;
+    color: rgb(17 24 39);
+}
+
+.login-subtext {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgb(75 85 99);
+}
+
+.register-link {
+    font-weight: 500;
+    color: rgb(79 70 229);
+}
+
+.register-link:hover {
+    color: rgb(67 56 202);
+}
+
+.login-button-container {
+    margin-top: 2rem;
+}
+
+.material-icons {
+    font-size: 20px;
+    margin-right: 0.5rem;
+    vertical-align: text-bottom;
+}
+
+.divider-container {
+    margin-top: 1.5rem;
+}
+
+.divider-line {
+    position: relative;
+}
+
+.divider {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid rgb(209 213 219);
+}
+
+.divider-text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 0.875rem;
+}
+
+.divider-label {
+    padding: 0 0.5rem;
+    background-color: rgb(249 250 251);
+    color: rgb(107 114 128);
+}
